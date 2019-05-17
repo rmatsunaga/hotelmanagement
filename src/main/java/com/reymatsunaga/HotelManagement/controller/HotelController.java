@@ -3,9 +3,7 @@ package com.reymatsunaga.HotelManagement.controller;
 
 import com.reymatsunaga.HotelManagement.dao.HotelDao;
 import com.reymatsunaga.HotelManagement.model.Hotel;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,9 +16,24 @@ public class HotelController {
         this.hotelDao = hotelDao;
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public List<Hotel> getAll() {
         List<Hotel> hotels = this.hotelDao.findAll();
         return hotels;
+    }
+
+    @PutMapping
+    public void insert(@RequestBody Hotel hotel) {
+        this.hotelDao.insert(hotel);
+    }
+
+    @PostMapping
+    public void update(@RequestBody Hotel hotel) {
+        this.hotelDao.save(hotel);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") String id) {
+        this.hotelDao.deleteById(id);
     }
 }
