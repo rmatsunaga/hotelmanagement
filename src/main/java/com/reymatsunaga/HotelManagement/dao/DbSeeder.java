@@ -8,9 +8,16 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @Component
 public class DbSeeder implements CommandLineRunner {
+
+    private HotelDao hotelDao;
+
+    public DbSeeder(HotelDao hotelDao) {
+        this.hotelDao = hotelDao;
+    }
 
     @Override
     public void run(String... strings) throws Exception {
@@ -39,6 +46,13 @@ public class DbSeeder implements CommandLineRunner {
                 new ArrayList<>()
         );
 
-        
+        // Drop All Hotels
+
+        this.hotelDao.deleteAll();
+
+        // Add Hotels to database
+
+        List<Hotel> hotels = Arrays.asList(marriot, ibis, sofitel);
+        this.hotelDao.saveAll(hotels);
     }
 }
