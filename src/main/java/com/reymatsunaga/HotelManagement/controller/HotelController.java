@@ -36,4 +36,10 @@ public class HotelController {
     public void delete(@PathVariable("id") String id) {
         this.hotelDao.deleteById(id);
     }
+
+    @GetMapping("/{id}")
+    public Hotel getById(@PathVariable("id") String id) {
+        Hotel hotel = this.hotelDao.findById(id);
+        return hotel;
+    }
 }
