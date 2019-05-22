@@ -48,4 +48,12 @@ public class HotelController {
 
         return hotels;
     }
+
+    @GetMapping("/address/{city}")
+    public List<Hotel> getByCity(@PathVariable("city") String city) {
+        List<Hotel> hotels = this.hotelDao.findByCity(city);
+
+
+        return hotels;
+    }
 }
