@@ -39,7 +39,13 @@ public class HotelController {
 
     @GetMapping("/{id}")
     public Hotel getById(@PathVariable("id") String id) {
-        Hotel hotel = this.hotelDao.findById(id);
+        Hotel hotel = this.hotelDao.getById(id);
         return hotel;
+    }
+    @GetMapping("/price/{maxPrice}")
+    public List<Hotel> findByPricePerNightLessThan(@PathVariable("maxPrice") int maxPrice) {
+        List<Hotel> hotels = this.hotelDao.findByPricePerNightLessThan(maxPrice);
+
+        return hotels;
     }
 }

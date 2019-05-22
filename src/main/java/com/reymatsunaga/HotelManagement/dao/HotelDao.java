@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface HotelDao extends MongoRepository<Hotel, String> {
-    Hotel findById(String id);
+    Hotel getById(String id);
     List<Hotel> findByPricePerNightLessThan(int maxPrice);
 }
